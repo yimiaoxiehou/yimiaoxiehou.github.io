@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>yimiao</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yimiaoxiehou.github.io/"/>
+  <updated>2018-08-18T10:01:28.503Z</updated>
+  <id>http://yimiaoxiehou.github.io/</id>
+  
+  <author>
+    <name>yimiao</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>maven 知识积累</title>
+    <link href="http://yimiaoxiehou.github.io/2018/08/18/maven-%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/"/>
+    <id>http://yimiaoxiehou.github.io/2018/08/18/maven-知识积累/</id>
+    <published>2018-08-18T08:54:00.000Z</published>
+    <updated>2018-08-18T10:01:28.503Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><ol><li><p>创建 maven 的普通 java 项目：<br> <code>mvn archetype:create<br>  -DgroupId=packageName<br>   -DartifactId=projectName</code></p></li><li><p>创建 maven 的 web 项目：<br> <code>mvn archetype:create<br>  -DgroupId=packageName<br>   -DactifactId=webappName -DarchtypeArtifactId=maven-archetype-webapp</code></p></li></ol><h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><table><thead><tr><th style="text-align:right">命令</th><th style="text-align:left">含义</th></tr></thead><tbody><tr><td style="text-align:right">mvn compile</td><td style="text-align:left">编译源码</td></tr><tr><td style="text-align:right">mvn test-compile</td><td style="text-align:left">编译测试源码</td></tr><tr><td style="text-align:right">mvn test</td><td style="text-align:left">运行测试</td></tr><tr><td style="text-align:right">mvn package</td><td style="text-align:left">打包项目，在 target 下生成已经压缩的包</td></tr><tr><td style="text-align:right">mvn jar:jar</td><td style="text-align:left">打包成 jar 包</td></tr><tr><td style="text-align:right">mvn install</td><td style="text-align:left">安装源码到本地仓库</td></tr><tr><td style="text-align:right">mvn deply</td><td style="text-align:left">部署到私服仓库，上传部署构建，会把target目录下的文件上传，包括源码</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;基本命令&quot;&gt;&lt;a href=&quot;#基本命令&quot; class=&quot;headerlink&quot; title=&quot;基本命令&quot;&gt;&lt;/a&gt;基本命令&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;创建 maven 的普通 java 项目：&lt;br&gt; &lt;code&gt;mvn archetype:create&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="maven" scheme="http://yimiaoxiehou.github.io/tags/maven/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>dubbox</title>
+    <link href="http://yimiaoxiehou.github.io/2018/08/18/dubbox/"/>
+    <id>http://yimiaoxiehou.github.io/2018/08/18/dubbox/</id>
+    <published>2018-08-18T08:49:00.000Z</published>
+    <updated>2018-08-18T08:54:20.909Z</updated>
+    
+    <content type="html"><![CDATA[<p>实现前后端分离的一个框架</p><p>由 阿里 dobbo 改进而来，当当维护</p><h2 id="构件："><a href="#构件：" class="headerlink" title="构件："></a>构件：</h2><p><img src="https://lh3.googleusercontent.com/O9axdFXDbtFuArlo9O8DjNYusC5ynTmqrDxuP7F2dtwGlOtFy6UTTh7N-uuHvd01VZKuOtFQvVKD" alt="enter image description here" title="dubbox 组件图"></p><ol><li>注册中心（Registry）</li><li>服务提供方 (Provider)</li><li>服务消费方 (comsumer)</li><li>监控中心 （Monitor）</li><li>服务运行容器 （Container）</li></ol><h2 id="运行："><a href="#运行：" class="headerlink" title="运行："></a>运行：</h2><ol><li>服务日期负责启动，加载，运行服务提供方</li><li>提供方向注册中心注册自己提供的服务</li><li>消费者启动时，向注册中心订阅自己所需的服务</li><li>注册中心返回地址列表给消费者。如果有变动，注册中心使用长连接推送新数据（http:keep-alive）</li><li>消费者从地址列表中，基于软负载均衡算法，选择一台提供者进行调用。如果失败，再选一台调用。</li><li>消费者和提供者，在内存中累计调用次数和时间，每分钟定时发送一次统计数据到监控中心。</li></ol><p>###注册中心————Zookeeper （官方推荐，hadoop 组件）</p><p>##备注：<br>当当并没有上传 dobbox 代码到 maven 仓库中，所以不能直接在 maven 中引用，可以使用 jar 包，或者 maven install 到本地仓库</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;实现前后端分离的一个框架&lt;/p&gt;
+&lt;p&gt;由 阿里 dobbo 改进而来，当当维护&lt;/p&gt;
+&lt;h2 id=&quot;构件：&quot;&gt;&lt;a href=&quot;#构件：&quot; class=&quot;headerlink&quot; title=&quot;构件：&quot;&gt;&lt;/a&gt;构件：&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://
+      
+    
+    </summary>
+    
+    
+      <category term="dubbox" scheme="http://yimiaoxiehou.github.io/tags/dubbox/"/>
+    
+      <category term="SOA" scheme="http://yimiaoxiehou.github.io/tags/SOA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>创建简单的 Scripy 项目</title>
+    <link href="http://yimiaoxiehou.github.io/2018/07/06/scrapy-tutorial-1/"/>
+    <id>http://yimiaoxiehou.github.io/2018/07/06/scrapy-tutorial-1/</id>
+    <published>2018-07-06T02:07:00.000Z</published>
+    <updated>2018-08-18T08:51:15.763Z</updated>
+    
+    <content type="html"><![CDATA[<p>在爬虫项目的根目录中输入如下命令：</p><ol><li>创建项目</li></ol><hr><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy startproject demoName</span><br></pre></td></tr></table></figure><p>创建一个名为 <strong>demoName</strong> 的 文件夹.<br>该文件夹即为 <strong>scrapy</strong> 项目的根目录,文件夹中包含以下文件：</p><blockquote><p><span style="color:#FF6666;">scrapy.cfg:</span> 项目的配置文件<br><span style="color:#FF6666;">tutorial/:</span> 该项目的python模块。之后您将在此加入代码。<br><span style="color:#FF6666;">tutorial/items.py:</span> 项目中的item文件.<br><span style="color:#FF6666;">tutorial/pipelines.py:</span> 项目中的pipelines文件.<br><span style="color:#FF6666;">tutorial/settings.py:</span> 项目的设置文件.<br><span style="color:#FF6666;">tutorial/spiders/:</span> 放置spider代码的目录.</p></blockquote><ol start="2"><li>定义数据项 <strong>Item</strong></li></ol><hr><p><strong>Item</strong> 即爬取到的单个网页的数据容器，如果把数据保存到数据库的话， <strong>Item</strong> 即为数据库的行。<br>创建一个 <strong>Item</strong> 类必须继承 <code>scrapy.item</code><br>实例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import scrapy</span><br><span class="line"></span><br><span class="line">class TestItem(scrapy.Item):</span><br><span class="line">    title = scrapy.Field()</span><br><span class="line">    link = scrapy.Field()</span><br><span class="line">    desc = scrapy.Field()</span><br></pre></td></tr></table></figure></p><h2>3. 编写爬虫</h2><br>在一个 <strong>scrapy</strong> 项目中可以包括多个爬虫，但是默认配置下只能运行一个。如果想启动多个爬虫请参考 —— <a href="https://juejin.im/post/5a1e2a4f6fb9a0451d413a14-" target="_blank" rel="noopener">Scrapy之“并行”爬虫</a><br>创建 <strong>scrapy</strong> 爬虫必须继承 <code>scrapy.Spider</code> 类，且定义以下三个属性：<br><br> - <code>name</code> : 爬虫的 <span style="color:red;">唯一标识</span> ,启动爬虫时就必须传递该参数<br> - <code>start_urls</code> : 包含了Spider启动时爬取的 url 列表。因此，第一个被爬取到的页面将是其中之一。后续的 URL 将从初始页面的数据中提取。<br> - <code>parse()</code> : <strong>spider</strong> 的一个方法。被调用时，每个初始 URL 完成下载后生成的 <code>Response</code> 对象将会作为唯一的参数传递给该函数。。该方法负责解析返回的数据（response data），提前数据——生成 <strong>Item</strong> 以及生成进一步处理的 URL 的 <code>Request</code> 对象。<br><br>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import scrapy</span><br><span class="line"></span><br><span class="line">class TestSpider(scrapy.Spider):</span><br><span class="line">    name = &quot;test&quot;</span><br><span class="line">    allowed_domains = [&quot;w3school.com.cn&quot;]</span><br><span class="line">    start_urls = [</span><br><span class="line">        &quot;http://www.w3school.com.cn/html/index.asp&quot;,</span><br><span class="line">        &quot;http://www.w3school.com.cn/js/index.asp&quot;</span><br><span class="line">    ]</span><br><span class="line">    </span><br><span class="line">    def parse(self, response):</span><br><span class="line">        filename = response.url.split(&quot;/&quot;)[-2]</span><br><span class="line">        with open(filename, &apos;wb&apos;) as f:</span><br><span class="line">            f.write(response.body)</span><br></pre></td></tr></table></figure><br><br><h2> 4. 启动爬虫</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl test</span><br></pre></td></tr></table></figure><p>运行该命令时，<code>scrapy</code> 将会为 <code>start_url</code> 中的每个 URL 创建一个 <code>scrapy.Request</code> 对象，并将执行生成的 <code>scrapy.http.Response</code> 作为参数传递给 <code>parse()</code> 方法处理。</p><blockquote><p>虽然 <code>scrapy</code> 启动时会创建十个进程，但是只有一个线程会用于下载网页内容，其他内容都是作 dns 解析之类的工作。<br>那么如何实现 <code>scrapy</code> 的并发呢，有两个方法：</p><ol><li>创建 <strong>docker</strong> 容器，运行多个容器来实现并发，可以通过 <strong>redis</strong> 来控制请求 url 防止重复请求。</li><li>设置 <code>settings.DOWNOAD_DELAY=0</code> 该参数控制网页下载的间隔（单位秒），设置为零可以实现伪并发，但可能会被反爬，但是即便如此设置理论上仍旧只能使用一个 cpu 核心。</li></ol></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在爬虫项目的根目录中输入如下命令：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;创建项目&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;
+      
+    
+    </summary>
+    
+      <category term="python" scheme="http://yimiaoxiehou.github.io/categories/python/"/>
+    
+    
+      <category term="scrapy" scheme="http://yimiaoxiehou.github.io/tags/scrapy/"/>
+    
+      <category term="spider" scheme="http://yimiaoxiehou.github.io/tags/spider/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yimiaoxiehou.github.io/2018/07/06/hello-world/"/>
+    <id>http://yimiaoxiehou.github.io/2018/07/06/hello-world/</id>
+    <published>2018-07-06T01:53:23.000Z</published>
+    <updated>2018-07-06T01:53:23.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>

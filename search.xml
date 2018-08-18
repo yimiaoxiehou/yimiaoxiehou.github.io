@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[maven 知识积累]]></title>
+    <url>%2F2018%2F08%2F18%2Fmaven-%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF%2F</url>
+    <content type="text"><![CDATA[基本命令 创建 maven 的普通 java 项目： mvn archetype:create -DgroupId=packageName -DartifactId=projectName 创建 maven 的 web 项目： mvn archetype:create -DgroupId=packageName -DactifactId=webappName -DarchtypeArtifactId=maven-archetype-webapp 常用命令 命令 含义 mvn compile 编译源码 mvn test-compile 编译测试源码 mvn test 运行测试 mvn package 打包项目，在 target 下生成已经压缩的包 mvn jar:jar 打包成 jar 包 mvn install 安装源码到本地仓库 mvn deply 部署到私服仓库，上传部署构建，会把target目录下的文件上传，包括源码]]></content>
+      <tags>
+        <tag>maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[dubbox]]></title>
+    <url>%2F2018%2F08%2F18%2Fdubbox%2F</url>
+    <content type="text"><![CDATA[实现前后端分离的一个框架 由 阿里 dobbo 改进而来，当当维护 构件： 注册中心（Registry） 服务提供方 (Provider) 服务消费方 (comsumer) 监控中心 （Monitor） 服务运行容器 （Container） 运行： 服务日期负责启动，加载，运行服务提供方 提供方向注册中心注册自己提供的服务 消费者启动时，向注册中心订阅自己所需的服务 注册中心返回地址列表给消费者。如果有变动，注册中心使用长连接推送新数据（http:keep-alive） 消费者从地址列表中，基于软负载均衡算法，选择一台提供者进行调用。如果失败，再选一台调用。 消费者和提供者，在内存中累计调用次数和时间，每分钟定时发送一次统计数据到监控中心。 ###注册中心————Zookeeper （官方推荐，hadoop 组件） ##备注：当当并没有上传 dobbox 代码到 maven 仓库中，所以不能直接在 maven 中引用，可以使用 jar 包，或者 maven install 到本地仓库]]></content>
+      <tags>
+        <tag>dubbox</tag>
+        <tag>SOA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[创建简单的 Scripy 项目]]></title>
+    <url>%2F2018%2F07%2F06%2Fscrapy-tutorial-1%2F</url>
+    <content type="text"><![CDATA[在爬虫项目的根目录中输入如下命令： 创建项目 1scrapy startproject demoName 创建一个名为 demoName 的 文件夹.该文件夹即为 scrapy 项目的根目录,文件夹中包含以下文件： scrapy.cfg: 项目的配置文件tutorial/: 该项目的python模块。之后您将在此加入代码。tutorial/items.py: 项目中的item文件.tutorial/pipelines.py: 项目中的pipelines文件.tutorial/settings.py: 项目的设置文件.tutorial/spiders/: 放置spider代码的目录. 定义数据项 Item Item 即爬取到的单个网页的数据容器，如果把数据保存到数据库的话， Item 即为数据库的行。创建一个 Item 类必须继承 scrapy.item实例:123456import scrapyclass TestItem(scrapy.Item): title = scrapy.Field() link = scrapy.Field() desc = scrapy.Field() 3. 编写爬虫在一个 scrapy 项目中可以包括多个爬虫，但是默认配置下只能运行一个。如果想启动多个爬虫请参考 —— Scrapy之“并行”爬虫创建 scrapy 爬虫必须继承 scrapy.Spider 类，且定义以下三个属性： - name : 爬虫的 唯一标识 ,启动爬虫时就必须传递该参数 - start_urls : 包含了Spider启动时爬取的 url 列表。因此，第一个被爬取到的页面将是其中之一。后续的 URL 将从初始页面的数据中提取。 - parse() : spider 的一个方法。被调用时，每个初始 URL 完成下载后生成的 Response 对象将会作为唯一的参数传递给该函数。。该方法负责解析返回的数据（response data），提前数据——生成 Item 以及生成进一步处理的 URL 的 Request 对象。示例：1234567891011121314import scrapyclass TestSpider(scrapy.Spider): name = &quot;test&quot; allowed_domains = [&quot;w3school.com.cn&quot;] start_urls = [ &quot;http://www.w3school.com.cn/html/index.asp&quot;, &quot;http://www.w3school.com.cn/js/index.asp&quot; ] def parse(self, response): filename = response.url.split(&quot;/&quot;)[-2] with open(filename, &apos;wb&apos;) as f: f.write(response.body) 4. 启动爬虫 1scrapy crawl test 运行该命令时，scrapy 将会为 start_url 中的每个 URL 创建一个 scrapy.Request 对象，并将执行生成的 scrapy.http.Response 作为参数传递给 parse() 方法处理。 虽然 scrapy 启动时会创建十个进程，但是只有一个线程会用于下载网页内容，其他内容都是作 dns 解析之类的工作。那么如何实现 scrapy 的并发呢，有两个方法： 创建 docker 容器，运行多个容器来实现并发，可以通过 redis 来控制请求 url 防止重复请求。 设置 settings.DOWNOAD_DELAY=0 该参数控制网页下载的间隔（单位秒），设置为零可以实现伪并发，但可能会被反爬，但是即便如此设置理论上仍旧只能使用一个 cpu 核心。]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>scrapy</tag>
+        <tag>spider</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2018%2F07%2F06%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+</search>
