@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="dubbox,SOA," />
+  <meta name="keywords" content="dubbox,SOA,分布式,RPC," />
 
 
 
@@ -81,19 +81,19 @@
 
 
 
-<meta name="description" content="实现前后端分离的一个框架 由 阿里 dobbo 改进而来，当当维护 构件：  注册中心（Registry） 服务提供方 (Provider) 服务消费方 (comsumer) 监控中心 （Monitor） 服务运行容器 （Container）  运行： 服务日期负责启动，加载，运行服务提供方 提供方向注册中心注册自己提供的服务 消费者启动时，向注册中心订阅自己所需的服务 注册中心返回地址列表给消费">
-<meta name="keywords" content="dubbox,SOA">
+<meta name="description" content="一个分布式的远程调用框架 由 阿里 dobbo 改进而来，当当维护 应用场景：大型的 web 项目中，多模块之间的远程调用（ RPC ——调用方知道并拥有接口，但实现 在服务端）。 概念分布式架构。提供高性能和透明化的 RPC 远程服务调用方案，以及 SOA ——面向服务服务架构的解决方案。 特点 远程通讯: 提供对多种基于长连接的NIO框架抽象封装，包括多种线程模型，序列化，以及“请求-响应”模">
+<meta name="keywords" content="dubbox,SOA,分布式,RPC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="dubbox">
 <meta property="og:url" content="http://yimiaoxiehou.github.io/2018/08/18/dubbox/index.html">
 <meta property="og:site_name" content="yimiao">
-<meta property="og:description" content="实现前后端分离的一个框架 由 阿里 dobbo 改进而来，当当维护 构件：  注册中心（Registry） 服务提供方 (Provider) 服务消费方 (comsumer) 监控中心 （Monitor） 服务运行容器 （Container）  运行： 服务日期负责启动，加载，运行服务提供方 提供方向注册中心注册自己提供的服务 消费者启动时，向注册中心订阅自己所需的服务 注册中心返回地址列表给消费">
+<meta property="og:description" content="一个分布式的远程调用框架 由 阿里 dobbo 改进而来，当当维护 应用场景：大型的 web 项目中，多模块之间的远程调用（ RPC ——调用方知道并拥有接口，但实现 在服务端）。 概念分布式架构。提供高性能和透明化的 RPC 远程服务调用方案，以及 SOA ——面向服务服务架构的解决方案。 特点 远程通讯: 提供对多种基于长连接的NIO框架抽象封装，包括多种线程模型，序列化，以及“请求-响应”模">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lh3.googleusercontent.com/O9axdFXDbtFuArlo9O8DjNYusC5ynTmqrDxuP7F2dtwGlOtFy6UTTh7N-uuHvd01VZKuOtFQvVKD">
-<meta property="og:updated_time" content="2018-08-18T08:54:20.909Z">
+<meta property="og:updated_time" content="2018-08-18T13:00:17.665Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="dubbox">
-<meta name="twitter:description" content="实现前后端分离的一个框架 由 阿里 dobbo 改进而来，当当维护 构件：  注册中心（Registry） 服务提供方 (Provider) 服务消费方 (comsumer) 监控中心 （Monitor） 服务运行容器 （Container）  运行： 服务日期负责启动，加载，运行服务提供方 提供方向注册中心注册自己提供的服务 消费者启动时，向注册中心订阅自己所需的服务 注册中心返回地址列表给消费">
+<meta name="twitter:description" content="一个分布式的远程调用框架 由 阿里 dobbo 改进而来，当当维护 应用场景：大型的 web 项目中，多模块之间的远程调用（ RPC ——调用方知道并拥有接口，但实现 在服务端）。 概念分布式架构。提供高性能和透明化的 RPC 远程服务调用方案，以及 SOA ——面向服务服务架构的解决方案。 特点 远程通讯: 提供对多种基于长连接的NIO框架抽象封装，包括多种线程模型，序列化，以及“请求-响应”模">
 <meta name="twitter:image" content="https://lh3.googleusercontent.com/O9axdFXDbtFuArlo9O8DjNYusC5ynTmqrDxuP7F2dtwGlOtFy6UTTh7N-uuHvd01VZKuOtFQvVKD">
 
 
@@ -311,6 +311,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/架构/" itemprop="url" rel="index">
+                    <span itemprop="name">架构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -338,8 +360,15 @@
       
 
       
-        <p>实现前后端分离的一个框架</p>
+        <p>一个分布式的远程调用框架</p>
 <p>由 阿里 dobbo 改进而来，当当维护</p>
+<h2 id="应用场景："><a href="#应用场景：" class="headerlink" title="应用场景："></a>应用场景：</h2><p>大型的 web 项目中，多模块之间的远程调用（ RPC ——调用方知道并拥有接口，但实现 在服务端）。</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>分布式架构。<br>提供高性能和透明化的 RPC 远程服务调用方案，以及 SOA ——面向服务服务架构的解决方案。</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ol>
+<li>远程通讯: 提供对多种基于长连接的NIO框架抽象封装，包括多种线程模型，序列化，以及“请求-响应”模式的信息交换方式。</li>
+<li>集群容错: 提供基于接口方法的透明远程过程调用，包括多协议支持，以及软负载均衡，失败容错，地址路由，动态配置等集群支持。</li>
+<li>自动发现: 基于注册中心目录服务，使服务消费方能动态的查找服务提供方，使地址透明，使服务提供方可以平滑增加或减少机器。</li>
+</ol>
 <h2 id="构件："><a href="#构件：" class="headerlink" title="构件："></a>构件：</h2><p><img src="https://lh3.googleusercontent.com/O9axdFXDbtFuArlo9O8DjNYusC5ynTmqrDxuP7F2dtwGlOtFy6UTTh7N-uuHvd01VZKuOtFQvVKD" alt="enter image description here" title="dubbox 组件图"></p>
 <ol>
 <li>注册中心（Registry）</li>
@@ -378,6 +407,10 @@
             <a href="/tags/dubbox/" rel="tag"># dubbox</a>
           
             <a href="/tags/SOA/" rel="tag"># SOA</a>
+          
+            <a href="/tags/分布式/" rel="tag"># 分布式</a>
+          
+            <a href="/tags/RPC/" rel="tag"># RPC</a>
           
         </div>
       
@@ -479,7 +512,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -490,7 +523,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">categories</span>
                 
               </div>
@@ -501,7 +534,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -541,7 +574,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#构件："><span class="nav-number">1.</span> <span class="nav-text">构件：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行："><span class="nav-number">2.</span> <span class="nav-text">运行：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#应用场景："><span class="nav-number">1.</span> <span class="nav-text">应用场景：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">2.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">2.1.</span> <span class="nav-text">特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构件："><span class="nav-number">3.</span> <span class="nav-text">构件：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行："><span class="nav-number">4.</span> <span class="nav-text">运行：</span></a></li></ol></div>
             
 
           </div>
