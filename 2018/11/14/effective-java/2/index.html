@@ -100,7 +100,7 @@
 <meta property="og:image" content="https://lh3.googleusercontent.com/-ZzsTLiRYfSw/W-vovkUlXpI/AAAAAAAAEBA/h92HlRG-0Agy2BX2YtP-Z3xXM-BDNDdoQCHMYCw/I/%255BUNSET%255D">
 <meta property="og:image" content="https://lh3.googleusercontent.com/-A-qJEuF4vqk/W-vos9tki1I/AAAAAAAAEA4/mFDiehJ7ayoIa5f3oCuOuMzg91svtcEfQCHMYCw/I/%255BUNSET%255D">
 <meta property="og:image" content="https://lh3.googleusercontent.com/-LVZLR6fAubI/W-vovXXgeWI/AAAAAAAAEA8/Ee6E7eXr--c5TPv0XFJUIqleSN5bmsd9gCHMYCw/I/%255BUNSET%255D">
-<meta property="og:updated_time" content="2018-11-14T09:36:59.825Z">
+<meta property="og:updated_time" content="2018-11-14T09:39:27.876Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="effective-java 第二章：创建和销毁对象">
 <meta name="twitter:description" content="使用静态工厂方法代替构造器好处： 静态工厂有名字。静态工厂的名字可以更清晰的描述返回的对象，比较构造器参数例如:BigInteger.probablePrime(int bitLength,Random rnd)返回一个素数需要多个构造器返回多个类型时，只能靠参数识别，开发人员难以记住。而静态工厂方法靠函数名就知道返回的大概内容了。  静态工厂方法不必每次调用都创建一个新对象。可以重复利用对象，免">
@@ -375,7 +375,7 @@
 <h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><ul>
 <li>Builder 模式<br>不直接生成对象，而是利用所有提供的参数来调用对应的静态工厂，得到一个 builder 对象，然后调用对象的 sette<br>r 来设置参数。</li>
 </ul>
-<p>实现：<br><img src="https://lh3.googleusercontent.com/-nBzQNLiGmLE/W-vsjw4N5PI/AAAAAAAAEB4/AVHH8BIfe4YIsooymuPLkVdYawytBVrIgCHMYCw/I/15421881717779.jpg" alt=""><br><img src="https://lh3.googleusercontent.com/-oNoJlX9Eztg/W-vrsGdKlXI/AAAAAAAAEBU/PEI_4UyOua0CtegOZgI1baSyZmQgPbe1wCHMYCw/I/15421153532567.jpg" alt="15421153532567"><br>调用：</p>
+<p>实现：<br><img src="https://lh3.googleusercontent.com/-nBzQNLiGmLE/W-vsjw4N5PI/AAAAAAAAEB4/AVHH8BIfe4YIsooymuPLkVdYawytBVrIgCHMYCw/I/15421881717779.jpg" alt="15421881717779"><br><img src="https://lh3.googleusercontent.com/-oNoJlX9Eztg/W-vrsGdKlXI/AAAAAAAAEBU/PEI_4UyOua0CtegOZgI1baSyZmQgPbe1wCHMYCw/I/15421153532567.jpg" alt="15421153532567"><br>调用：</p>
 <p><img src="https://lh3.googleusercontent.com/-FsOuvvIsXEk/W-vrsfqaI1I/AAAAAAAAEBY/PqWx0YzmDnEcOu3ssqlQnbzjbIeu9tiSwCHMYCw/I/15421153995393.jpg" alt="15421153995393"></p>
 <h3 id="不足："><a href="#不足：" class="headerlink" title="不足："></a>不足：</h3><ul>
 <li>创建对象必须先创建它的构建起，需要一定的开销。</li>
