@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[effective-java 第三章：对于所有对象都通用的方法]]></title>
-    <url>%2F2018%2F11%2F14%2Feffective-java%2F3%2F</url>
+    <title><![CDATA[4]]></title>
+    <url>%2F2018%2F11%2F15%2Feffective-java%2F4%2F</url>
     <content type="text"></content>
+      <categories>
+        <category>Java</category>
+      </categories>
       <tags>
         <tag>Effective Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[effective-java 第三章：对于所有对象都通用的方法]]></title>
+    <url>%2F2018%2F11%2F14%2Feffective-java%2F3%2F</url>
+    <content type="text"><![CDATA[覆盖 equals 时请遵守通用约定 类的每个实例本质上都是唯一的。 不关心类是否提供了“逻辑相等”的测试功能。 超类以及覆盖了 equals，从超类继承过来的行为对于子类也是合适的。 雷蛇私有的或是包级私有的，可以确定它的 equals 方法永远不会被调用。 equals 的通用规定 自反性 x.equals(x) == true 对称性 x.equals(y) = true -&gt; y.equals(x) 传递性 x.equals(y) &amp; y.equals(z) -&gt; x.equals(z) 一致性 x，y没修改时，x.equals(y) 一直成立 非 null x != null -&gt; x.equals(null) = false 覆盖 equals 时总要覆盖 hashCode不然该列所有基于散列的集合（HashMap,HashSet,HashTable）将无法正常工作 相同的对象 hashCode 必须要相等 不同的对象 hashCode 不一定得不相同（不相同也许可以提高散列表 hash table 的性能） 始终要覆盖 toString toString 会在使用 printf，字符串相加，assert或者调试器时被自动调用。提高良好的 toString 实现跨越使类使用起来更舒服。 toString 应该包含所有值得关注的值。 可以给 toString 设定一种格式，但设定好后一定要严格遵守并在文档中写清楚。 谨慎的覆盖 clone考虑实现 Comparable 接口]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Effective Java</tag>
+        <tag>equals</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[effective-java 第二章：创建和销毁对象]]></title>
     <url>%2F2018%2F11%2F14%2Feffective-java%2F2%2F</url>
     <content type="text"><![CDATA[使用静态工厂方法代替构造器好处： 静态工厂有名字。静态工厂的名字可以更清晰的描述返回的对象，比较构造器参数例如:BigInteger.probablePrime(int bitLength,Random rnd)返回一个素数需要多个构造器返回多个类型时，只能靠参数识别，开发人员难以记住。而静态工厂方法靠函数名就知道返回的大概内容了。 静态工厂方法不必每次调用都创建一个新对象。可以重复利用对象，免去创建多个相同对象的资源消耗（内存和时间）。可以保证单例。可使不可变类不存在两个相同的实例，使当且仅当 a==b 才存在 a.equals(b) == true ，例如，两个 String 必须要指向同一个，他们才能内容相同。这样做能使用 == 代替 equals() ,直接通过 HashCode 来判断是否相同，提高性能。枚举类（enum）就是这么做的。 静态工厂方法可以返回任意子类型的对象。API 可以返回对象，同时又不会使对象的类变为公有的。这种方式可以隐藏实现类。例如 Java 的集合类（Collections）。客户端通过接口来使用实现类，可以隐藏具体的实现类，API 变更时用户不受任何影响。 创建对象时代码可以更简洁。 缺点： 类如果不含公有的或者受保护的构造器，就不能子类化。 与其他静态方法没任何区别，在 API 文档中查找比较困难。 遇到多个构造器参数时要考虑使用构建器反模式Antipattern 层叠构造器缺点：参数多时难以编写和阅读 setter() 方法设置参数麻烦，而且暴露了 setter() 参数不安全。 解决方法 Builder 模式不直接生成对象，而是利用所有提供的参数来调用对应的静态工厂，得到一个 builder 对象，然后调用对象的 setter 来设置参数。 实现：调用： 不足： 创建对象必须先创建它的构建起，需要一定的开销。 代码多。 总结：如果类的构造器或静态工厂具有多个参数时（4个以上），设计这种类使用 Builder 模式更好，它比重叠构造器更易于阅读编写，比 setter 更安全。 使用私有构造器或枚举类型强化 Singleton 属性公有静态成员是个 final 域123456// Singleton with public final fieldpublic class Elvis &#123; public static final Elvis INSTANCE = new Elvis(); private Elvis()&#123;...&#125; public void leaveTheBuilding()&#123;...&#125;&#125; INSTANCE 实例全局唯一，但通过反射机制仍可调用私有构造函数生成新实例。 公有成员是静态工厂方法（类似于设计模式 —— 单例模式）1234567// Singleton with static factorypublic class Elvis &#123; private static final Elvis INSTANCE = new Elvis(); private Elvis()&#123;...&#125; public static Elvis getInstance() &#123; return INSTANCE; &#125; public void leaveTheBuilding()&#123;...&#125;&#125; 该方法提供了灵活性，可以在不改变 API 的情况下，控制是否单例。第二个是可以返回到一个泛型。但在序列化和反序列化时会存在一些问题。 编写一个包含单个元素的枚举类（最佳实现）12345// Enum singleton - the preferred approachpublic enum Elvis &#123; INSTANCE; public void leaveTheBuilding()&#123;...&#125;&#125; 该方法和 final 域相似，但是自带了序列化，绝对防止多次实例化，即便是反序列或者使用发射机制攻击。 对工具类设置私有构造函数避免创建不必要的对象如使用 String s = “aaa”; 代替 String s = new String(“aaa”);，后者每次都会生成一个新实例。 消除过期对象引用过期对象引用会导致内存泄漏。 三个常见的内存泄漏 类管理自己的内存 缓存 监听器和其他回调 详细内容（书本引用 21页-23页）： 避免使用终结方法（finalizer）java 规范不保证终结方法的及时运行，甚至不保证它的运行。可能程序结束时还有终结方法未执行。 终结方法影响性能，使用终结方法创建和销毁对象大概慢了430倍（作者的测试）。 对于一些资源的释放，最好显式的释放 原文引用（感觉无法归纳，orz）]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
       <tags>
         <tag>Effective Java</tag>
       </tags>

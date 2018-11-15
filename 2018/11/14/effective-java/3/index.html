@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Effective Java," />
+  <meta name="keywords" content="Effective Java,equals," />
 
 
 
@@ -96,15 +96,18 @@
 
 
 
-<meta name="keywords" content="Effective Java">
+<meta name="description" content="覆盖 equals 时请遵守通用约定 类的每个实例本质上都是唯一的。 不关心类是否提供了“逻辑相等”的测试功能。 超类以及覆盖了 equals，从超类继承过来的行为对于子类也是合适的。 雷蛇私有的或是包级私有的，可以确定它的 equals 方法永远不会被调用。  equals 的通用规定 自反性 x.equals(x) == true 对称性 x.equals(y) = true -&amp;gt; y.">
+<meta name="keywords" content="Effective Java,equals">
 <meta property="og:type" content="article">
 <meta property="og:title" content="effective-java 第三章：对于所有对象都通用的方法">
 <meta property="og:url" content="http://yimiaoxiehou.github.io/2018/11/14/effective-java/3/index.html">
 <meta property="og:site_name" content="一秒的博客">
+<meta property="og:description" content="覆盖 equals 时请遵守通用约定 类的每个实例本质上都是唯一的。 不关心类是否提供了“逻辑相等”的测试功能。 超类以及覆盖了 equals，从超类继承过来的行为对于子类也是合适的。 雷蛇私有的或是包级私有的，可以确定它的 equals 方法永远不会被调用。  equals 的通用规定 自反性 x.equals(x) == true 对称性 x.equals(y) = true -&amp;gt; y.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-14T09:26:47.898Z">
+<meta property="og:updated_time" content="2018-11-15T13:01:48.251Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="effective-java 第三章：对于所有对象都通用的方法">
+<meta name="twitter:description" content="覆盖 equals 时请遵守通用约定 类的每个实例本质上都是唯一的。 不关心类是否提供了“逻辑相等”的测试功能。 超类以及覆盖了 equals，从超类继承过来的行为对于子类也是合适的。 雷蛇私有的或是包级私有的，可以确定它的 equals 方法永远不会被调用。  equals 的通用规定 自反性 x.equals(x) == true 对称性 x.equals(y) = true -&amp;gt; y.">
 
 
 
@@ -302,6 +305,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -329,7 +354,30 @@
       
 
       
-        
+        <h2 id="覆盖-equals-时请遵守通用约定"><a href="#覆盖-equals-时请遵守通用约定" class="headerlink" title="覆盖 equals 时请遵守通用约定"></a>覆盖 equals 时请遵守通用约定</h2><ol>
+<li>类的每个实例本质上都是唯一的。</li>
+<li>不关心类是否提供了“逻辑相等”的测试功能。</li>
+<li>超类以及覆盖了 equals，从超类继承过来的行为对于子类也是合适的。</li>
+<li>雷蛇私有的或是包级私有的，可以确定它的 equals 方法永远不会被调用。</li>
+</ol>
+<h3 id="equals-的通用规定"><a href="#equals-的通用规定" class="headerlink" title="equals 的通用规定"></a>equals 的通用规定</h3><ul>
+<li>自反性 <code>x.equals(x) == true</code></li>
+<li>对称性 <code>x.equals(y) = true -&gt; y.equals(x)</code></li>
+<li>传递性 <code>x.equals(y) &amp; y.equals(z) -&gt; x.equals(z)</code></li>
+<li>一致性 <code>x，y没修改时，x.equals(y) 一直成立</code></li>
+<li>非 null <code>x != null -&gt; x.equals(null) = false</code></li>
+</ul>
+<h2 id="覆盖-equals-时总要覆盖-hashCode"><a href="#覆盖-equals-时总要覆盖-hashCode" class="headerlink" title="覆盖 equals 时总要覆盖 hashCode"></a>覆盖 equals 时总要覆盖 hashCode</h2><p>不然该列所有基于散列的集合（HashMap,HashSet,HashTable）将无法正常工作</p>
+<ul>
+<li>相同的对象 hashCode 必须要相等</li>
+<li>不同的对象 hashCode 不一定得不相同（不相同也许可以提高散列表 hash table 的性能）</li>
+</ul>
+<h2 id="始终要覆盖-toString"><a href="#始终要覆盖-toString" class="headerlink" title="始终要覆盖 toString"></a>始终要覆盖 toString</h2><ul>
+<li>toString 会在使用 printf，字符串相加，assert或者调试器时被自动调用。提高良好的 toString 实现跨越使类使用起来更舒服。</li>
+<li>toString 应该包含所有值得关注的值。</li>
+<li>可以给 toString 设定一种格式，但设定好后一定要严格遵守并在文档中写清楚。</li>
+</ul>
+<h2 id="谨慎的覆盖-clone"><a href="#谨慎的覆盖-clone" class="headerlink" title="谨慎的覆盖 clone"></a>谨慎的覆盖 clone</h2><h2 id="考虑实现-Comparable-接口"><a href="#考虑实现-Comparable-接口" class="headerlink" title="考虑实现 Comparable 接口"></a>考虑实现 Comparable 接口</h2>
       
     </div>
     
@@ -347,6 +395,8 @@
         <div class="post-tags">
           
             <a href="/tags/Effective-Java/" rel="tag"># Effective Java</a>
+          
+            <a href="/tags/equals/" rel="tag"># equals</a>
           
         </div>
       
@@ -368,6 +418,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/15/effective-java/4/" rel="prev" title="4">
+                4 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -419,8 +473,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -435,7 +498,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -445,10 +508,10 @@
             
             
             <div class="site-state-item site-state-categories">
-              
-                <span class="site-state-item-count">2</span>
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">categories</span>
-              
+              </a>
             </div>
           
 
@@ -457,7 +520,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -489,6 +552,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#覆盖-equals-时请遵守通用约定"><span class="nav-number">1.</span> <span class="nav-text">覆盖 equals 时请遵守通用约定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#equals-的通用规定"><span class="nav-number">1.1.</span> <span class="nav-text">equals 的通用规定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#覆盖-equals-时总要覆盖-hashCode"><span class="nav-number">2.</span> <span class="nav-text">覆盖 equals 时总要覆盖 hashCode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#始终要覆盖-toString"><span class="nav-number">3.</span> <span class="nav-text">始终要覆盖 toString</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#谨慎的覆盖-clone"><span class="nav-number">4.</span> <span class="nav-text">谨慎的覆盖 clone</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#考虑实现-Comparable-接口"><span class="nav-number">5.</span> <span class="nav-text">考虑实现 Comparable 接口</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

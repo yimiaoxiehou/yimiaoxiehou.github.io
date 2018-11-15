@@ -115,7 +115,7 @@
 <meta property="og:image" content="https://lh3.googleusercontent.com/-ZzsTLiRYfSw/W-vovkUlXpI/AAAAAAAAEBA/h92HlRG-0Agy2BX2YtP-Z3xXM-BDNDdoQCHMYCw/I/%255BUNSET%255D">
 <meta property="og:image" content="https://lh3.googleusercontent.com/-A-qJEuF4vqk/W-vos9tki1I/AAAAAAAAEA4/mFDiehJ7ayoIa5f3oCuOuMzg91svtcEfQCHMYCw/I/%255BUNSET%255D">
 <meta property="og:image" content="https://lh3.googleusercontent.com/-LVZLR6fAubI/W-vovXXgeWI/AAAAAAAAEA8/Ee6E7eXr--c5TPv0XFJUIqleSN5bmsd9gCHMYCw/I/%255BUNSET%255D">
-<meta property="og:updated_time" content="2018-11-14T09:39:27.876Z">
+<meta property="og:updated_time" content="2018-11-15T13:01:28.570Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="effective-java 第二章：创建和销毁对象">
 <meta name="twitter:description" content="使用静态工厂方法代替构造器好处： 静态工厂有名字。静态工厂的名字可以更清晰的描述返回的对象，比较构造器参数例如:BigInteger.probablePrime(int bitLength,Random rnd)返回一个素数需要多个构造器返回多个类型时，只能靠参数识别，开发人员难以记住。而静态工厂方法靠函数名就知道返回的大概内容了。  静态工厂方法不必每次调用都创建一个新对象。可以重复利用对象，免">
@@ -317,6 +317,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -360,25 +382,21 @@
 <li><p>与其他静态方法没任何区别，在 API 文档中查找比较困难。</p>
 </li>
 </ul>
-<hr>
 <h2 id="遇到多个构造器参数时要考虑使用构建器"><a href="#遇到多个构造器参数时要考虑使用构建器" class="headerlink" title="遇到多个构造器参数时要考虑使用构建器"></a>遇到多个构造器参数时要考虑使用构建器</h2><h3 id="反模式Antipattern"><a href="#反模式Antipattern" class="headerlink" title="反模式Antipattern"></a>反模式Antipattern</h3><ul>
-<li>层叠构造器<br>缺点：参数多时难以编写和阅读</li>
-</ul>
-<p><img src="https://lh3.googleusercontent.com/-ig3L5v8MEXQ/W-vryP6XSqI/AAAAAAAAEBc/P-zBaAnuumoqaArhX2IkBiVkxGkzkQzAwCHMYCw/I/%255BUNSET%255D" alt="屏幕快照 2018-11-13 下午9.13.12"></p>
-<ul>
-<li>setter() 方法设置参数<br>麻烦，而且暴露了 setter() 参数不安全。</li>
+<li><p>层叠构造器<br>缺点：参数多时难以编写和阅读<br><img src="https://lh3.googleusercontent.com/-ig3L5v8MEXQ/W-vryP6XSqI/AAAAAAAAEBc/P-zBaAnuumoqaArhX2IkBiVkxGkzkQzAwCHMYCw/I/%255BUNSET%255D" alt="屏幕快照 2018-11-13 下午9.13.12"></p>
+</li>
+<li><p>setter() 方法设置参数<br>麻烦，而且暴露了 setter() 参数不安全。</p>
+</li>
 </ul>
 <h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><ul>
 <li>Builder 模式<br>不直接生成对象，而是利用所有提供的参数来调用对应的静态工厂，得到一个 builder 对象，然后调用对象的 sette<br>r 来设置参数。</li>
 </ul>
-<p>实现：<br><img src="https://lh3.googleusercontent.com/-nBzQNLiGmLE/W-vsjw4N5PI/AAAAAAAAEB4/AVHH8BIfe4YIsooymuPLkVdYawytBVrIgCHMYCw/I/15421881717779.jpg" alt="15421881717779"><br><img src="https://lh3.googleusercontent.com/-oNoJlX9Eztg/W-vrsGdKlXI/AAAAAAAAEBU/PEI_4UyOua0CtegOZgI1baSyZmQgPbe1wCHMYCw/I/15421153532567.jpg" alt="15421153532567"><br>调用：</p>
-<p><img src="https://lh3.googleusercontent.com/-FsOuvvIsXEk/W-vrsfqaI1I/AAAAAAAAEBY/PqWx0YzmDnEcOu3ssqlQnbzjbIeu9tiSwCHMYCw/I/15421153995393.jpg" alt="15421153995393"></p>
+<p>实现：<br><img src="https://lh3.googleusercontent.com/-nBzQNLiGmLE/W-vsjw4N5PI/AAAAAAAAEB4/AVHH8BIfe4YIsooymuPLkVdYawytBVrIgCHMYCw/I/15421881717779.jpg" alt="15421881717779"><br><img src="https://lh3.googleusercontent.com/-oNoJlX9Eztg/W-vrsGdKlXI/AAAAAAAAEBU/PEI_4UyOua0CtegOZgI1baSyZmQgPbe1wCHMYCw/I/15421153532567.jpg" alt="15421153532567"><br>调用：<br><img src="https://lh3.googleusercontent.com/-FsOuvvIsXEk/W-vrsfqaI1I/AAAAAAAAEBY/PqWx0YzmDnEcOu3ssqlQnbzjbIeu9tiSwCHMYCw/I/15421153995393.jpg" alt="15421153995393"></p>
 <h3 id="不足："><a href="#不足：" class="headerlink" title="不足："></a>不足：</h3><ul>
 <li>创建对象必须先创建它的构建起，需要一定的开销。</li>
 <li>代码多。</li>
 </ul>
 <h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>如果类的构造器或静态工厂具有多个参数时（4个以上），设计这种类使用 Builder 模式更好，它比重叠构造器更易于阅读编写，比 setter 更安全。</p>
-<hr>
 <h2 id="使用私有构造器或枚举类型强化-Singleton-属性"><a href="#使用私有构造器或枚举类型强化-Singleton-属性" class="headerlink" title="使用私有构造器或枚举类型强化 Singleton 属性"></a>使用私有构造器或枚举类型强化 Singleton 属性</h2><h3 id="公有静态成员是个-final-域"><a href="#公有静态成员是个-final-域" class="headerlink" title="公有静态成员是个 final 域"></a>公有静态成员是个 final 域</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// Singleton with public final field</span><br><span class="line">public class Elvis &#123;</span><br><span class="line">    public static final Elvis INSTANCE = new Elvis();</span><br><span class="line">    private Elvis()&#123;...&#125;</span><br><span class="line">    public void leaveTheBuilding()&#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>INSTANCE 实例全局唯一，但通过反射机制仍可调用私有构造函数生成新实例。</p>
 <h3 id="公有成员是静态工厂方法（类似于设计模式-——-单例模式）"><a href="#公有成员是静态工厂方法（类似于设计模式-——-单例模式）" class="headerlink" title="公有成员是静态工厂方法（类似于设计模式 —— 单例模式）"></a>公有成员是静态工厂方法（类似于设计模式 —— 单例模式）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// Singleton with static factory</span><br><span class="line">public class Elvis &#123;</span><br><span class="line">    private static final Elvis INSTANCE = new Elvis();</span><br><span class="line">    private Elvis()&#123;...&#125;</span><br><span class="line">    public static Elvis getInstance() &#123; return INSTANCE; &#125;</span><br><span class="line">    public void leaveTheBuilding()&#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -516,7 +534,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -526,10 +544,10 @@
             
             
             <div class="site-state-item site-state-categories">
-              
-                <span class="site-state-item-count">2</span>
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">categories</span>
-              
+              </a>
             </div>
           
 
@@ -538,7 +556,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
